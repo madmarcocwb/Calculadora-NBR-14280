@@ -19,6 +19,8 @@ const App: React.FC = () => {
     numAccidents: 0,
     lostDays: 0,
     debitedDays: 0,
+    goalTF: 0,
+    goalTG: 0,
   });
 
   const [history, setHistory] = useState<CalculationRecord[]>(() => {
@@ -60,7 +62,6 @@ const App: React.FC = () => {
   }, [inputs]);
 
   const handleSave = (label?: string) => {
-    // Format month for default label if none provided
     const [year, month] = inputs.referenceMonth.split('-');
     const monthYearLabel = `${month}/${year}`;
     
@@ -94,10 +95,12 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 text-[#00008B] pb-12">
-      <Header />
+      <div className="no-print">
+        <Header />
+      </div>
       
       <main className="container mx-auto px-4 mt-8 space-y-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 no-print">
           {/* Input Section */}
           <div className="lg:col-span-7 space-y-6">
             <InputCard 
@@ -141,18 +144,45 @@ const App: React.FC = () => {
                   />
                 </div>
               </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 pt-6 border-t border-slate-100">
+                <div>
+                  <label className="block text-sm font-semibold mb-1 uppercase tracking-wider text-slate-500">Meta TF</label>
+                  <input 
+                    type="number" 
+                    value={inputs.goalTF} 
+                    onChange={(e) => handleInputChange('goalTF', Number(e.target.value))}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:ring-2 focus:ring-[#00008B] focus:outline-none transition-all text-xl font-bold border-dashed"
+                    placeholder="Meta de Frequência"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-semibold mb-1 uppercase tracking-wider text-slate-500">Meta TG</label>
+                  <input 
+                    type="number" 
+                    value={inputs.goalTG} 
+                    onChange={(e) => handleInputChange('goalTG', Number(e.target.value))}
+                    className="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 focus:ring-2 focus:ring-[#00008B] focus:outline-none transition-all text-xl font-bold border-dashed"
+                    placeholder="Meta de Gravidade"
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Results Section */}
           <div className="lg:col-span-5 space-y-6">
             <ResultsDisplay results={results} onSave={handleSave} referenceMonth={inputs.referenceMonth} />
-            <VisualizationCard results={results} />
           </div>
         </div>
 
+        {/* Visualization Card - Full Width */}
+        <div className="w-full">
+          <VisualizationCard results={results} goals={{ tf: inputs.goalTF, tg: inputs.goalTG }} referenceMonth={inputs.referenceMonth} />
+        </div>
+
         {/* History & Comparison Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 no-print">
           <HistoryList 
             history={history} 
             onDelete={handleDelete} 
@@ -171,8 +201,8 @@ const App: React.FC = () => {
         />
       )}
 
-      <footer className="mt-12 text-center text-sm text-slate-400">
-        <p>Calculadora NBR 14280 v2.6 Pro • Gestão Avançada de Dados</p>
+      <footer className="mt-12 text-center text-sm text-slate-400 no-print">
+        <p>Calculadora NBR 14280 v2.8 Pro • Gestão Avançada de Metas e Dados</p>
       </footer>
     </div>
   );

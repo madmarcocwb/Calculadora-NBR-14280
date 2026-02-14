@@ -14,7 +14,28 @@
         }
         /* Override default colors to force Navy */
         input, select, textarea, button {
-            color: #00008B ! from-inherit;
+            color: #00008B !important;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            /* Reset shadowing and borders for clean print */
+            .bg-white {
+                box-shadow: none !important;
+                border: 1px solid #eee !important;
+            }
         }
     </style>
 <script type="importmap">

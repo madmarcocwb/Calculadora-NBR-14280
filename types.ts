@@ -14,6 +14,8 @@ export interface CalculationInputs {
   numAccidents: number;
   lostDays: number;
   debitedDays: number;
+  goalTF: number;
+  goalTG: number;
 }
 
 export interface CalculationResults {
