@@ -16,14 +16,8 @@ export const Header: React.FC = () => {
             <p className="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mt-2">Segurança do Trabalho • Gestão Avançada</p>
           </div>
         </div>
-        <div className="hidden md:flex items-center gap-3">
-          <div className="text-right">
-            <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Sistema de Auditoria</p>
-            <p className="text-sm font-bold text-emerald-600 flex items-center justify-end gap-1">
-              <span className="h-2 w-2 bg-emerald-500 rounded-full animate-pulse"></span>
-              Operacional
-            </p>
-          </div>
+        <div className="hidden md:block">
+          {/* Status indicator removed per user request */}
         </div>
       </div>
     </header>

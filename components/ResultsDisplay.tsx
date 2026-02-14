@@ -60,7 +60,7 @@ export const ResultsDisplay: React.FC<Props> = ({ results, onSave, referenceMont
         <input 
           type="text" 
           placeholder="Etiqueta identificadora..." 
-          className="bg-white/10 border border-white/20 rounded-xl p-3 text-sm text-white placeholder:text-blue-200 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all font-bold"
+          className="bg-white border border-slate-200 rounded-xl p-3 text-sm text-[#00008B] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all font-bold"
           value={label}
           onChange={(e) => setLabel(e.target.value)}
         />
